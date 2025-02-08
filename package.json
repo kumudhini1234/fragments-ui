@@ -4,8 +4,9 @@
   "version": "0.0.1",
   "description": "Fragments UI testing web app",
   "scripts": {
-    "start": "parcel login.html",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "parcel login.html --port 1234",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "parcel build login.html --dist-dir dist"
   },
   "repository": {
     "type": "git",

@@ -25,6 +25,8 @@ async function init() {
   // Do an authenticated request to the fragments API server and log the result
   const userFragments = await getUserFragments(user);
 
+  console.log("User Fragments ", userFragments)
+
   // Update the UI to welcome the user
   userSection.hidden = false;
 

@@ -49,9 +49,9 @@ Ensure test coverage is **above 85%**.
 ## Deployment
 For production deployment:
 ```sh
-npm run build
+npm  start
 ```
-This generates an optimized `dist/` folder.
+This generates a login page where you sign up with your details
 
 ## Troubleshooting
 - If authentication fails, check Cognito settings in `.env`.

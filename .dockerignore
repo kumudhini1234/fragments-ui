@@ -1,0 +1,9 @@
+.parcel-cache/
+.vscode/
+dist/
+node_modules/
+.git/
+.gitignore
+.prettierrc
+.prettierignore
+eslint.config.mjs

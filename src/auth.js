@@ -1,10 +1,6 @@
 // src/auth.js
 
 import { UserManager } from 'oidc-client-ts';
-// change 
-//import 'dotenv/config';
-
-
 
 const cognitoAuthConfig = {
   authority: `https://cognito-idp.us-east-1.amazonaws.com/${process.env.AWS_COGNITO_POOL_ID}`,
@@ -16,9 +12,11 @@ const cognitoAuthConfig = {
   revokeTokenTypes: ['refresh_token'],
   // no silent renew via "prompt=none" (https://github.com/authts/oidc-client-ts/issues/366)
   automaticSilentRenew: false,
+  
 };
 
-// Create a UserManager instance
+
+// Create a UserManager instance    
 const userManager = new UserManager({
   ...cognitoAuthConfig,
 });
@@ -26,6 +24,19 @@ const userManager = new UserManager({
 export async function signIn() {
   // Trigger a redirect to the Cognito auth page, so user can authenticate
   await userManager.signinRedirect();
+}
+
+export async function signOut() {
+  try {
+    await userManager.signoutRedirect({
+      extraQueryParams:{
+        client_id: userManager.settings.client_id,
+        logout_uri: process.env.OAUTH_SIGN_OUT_REDIRECT_URL,
+      }
+    });
+  } catch (error) {
+    console.error('Sign-out error:', error);
+  }
 }
 
 // Create a simplified view of the user, with an extra method for creating the auth headers

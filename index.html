@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fragments UI</title>
+    <link rel="stylesheet" href="styles.css" /> <!-- Include custom CSS -->
+    <script type="module" src="./src/app.js"></script>
+  </head>
+  <body>
+    <header class="header">
+      <h1>Fragments UI</h1>
+      <nav class="nav">
+        <button id="login" class="btn">Login</button>
+        <button id="logout" class="btn">Logout</button>
+      </nav>
+    </header>
+
+    <main class="main">
+      <section hidden id="user" class="user-section">
+        <h2>Welcome, <span class="username"></span>!</h2>
+
+        <div class="form-container">
+          <h3>Create a New Fragment</h3>
+          <form id="createForm" class="form">
+            <label for="fragmentType" class="form-label">Fragment Type</label>
+            <select id="fragmentType" class="form-select">
+              <option value="text/plain" selected>Text</option>
+              <option value="text/markdown">Markdown</option>
+              <option value="text/html">HTML</option>
+              <option value="application/json">JSON</option>
+            </select>
+
+            <label for="fragmentContent" class="form-label">Fragment Content</label>
+            <textarea
+              id="fragmentContent"
+              class="form-textarea"
+              placeholder="Enter your fragments here...."
+            ></textarea>
+
+            <button type="submit" class="btn btn-submit">Submit</button>
+          </form>
+        </div>
+
+        <div class="fragments-container">
+          <h3>Your Fragments</h3>
+          <ul id="fragmentsList" class="fragments-list"></ul>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

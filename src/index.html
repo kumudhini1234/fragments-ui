@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Fragments UI</title>
+    <link rel="stylesheet" href="../public/style.css" />
+    <link rel="stylesheet" href="https://unpkg.com/bamboo.css" />
+    <script type="module" src="./app.js"></script>
+    <style>
+      body {
+        max-width: 900px;
+        margin: auto;
+        padding: 2rem;
+      }
+    
+      nav {
+        display: flex;
+        gap: 1rem;
+        justify-content: flex-end;
+        margin-bottom: 2rem;
+      }
+    
+      section {
+        margin-bottom: 2rem;
+      }
+    
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+    
+      textarea {
+        min-height: 100px;
+      }
+    
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        justify-content: center;
+        align-items: center;
+      }
+    
+      .modal-content {
+        background: #fff;
+        padding: 2rem;
+        border-radius: 8px;
+        width: 90%;
+        max-width: 500px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      }
+    
+      .status-message {
+        color: #3b82f6;
+      }
+    
+      button {
+        background-color: #c5664c;
+        color: white;
+        border: none;
+        padding: 0.6rem 1rem;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+    
+      button:hover {
+        background-color: #a7553f;
+      }
+    </style>
+    
+  </head>
+  <body>
+    <h1>Fragments UI</h1>
+
+    <!-- Login/Logout Buttons -->
+    <section>
+      <nav>
+        <button id="login">Login</button>
+        <button id="logout">Logout</button>
+      </nav>
+    </section>
+
+    <!-- Welcome Section -->
+    <section hidden id="user">
+      <h2>Hello <span class="username"></span>!</h2>
+    </section>
+
+    <!-- Create Fragment Form -->
+    <section hidden id="fragmentPostFormSection">
+      <h2>Create a Fragment</h2>
+      <form id="fragmentPostForm">
+        <label>
+          Fragment Type:
+          <select id="fragmentType" required>
+            <option value="text/plain">text/plain</option>
+            <option value="text/plain; charset=utf-8">text/plain; charset=utf-8</option>
+            <option value="text/markdown">text/markdown</option>
+            <option value="text/html">text/html</option>
+            <option value="text/csv">text/csv</option>
+            <option value="application/json">application/json</option>
+            <option value="application/yaml">application/yaml</option>
+            <option value="image/png">image/png</option>
+            <option value="image/jpeg">image/jpeg</option>
+            <option value="image/webp">image/webp</option>
+            <option value="image/avif">image/avif</option>
+            <option value="image/gif">image/gif</option>
+          </select>
+        </label>
+
+        <label>
+          Fragment Data (Text):
+          <textarea id="fragmentData"></textarea>
+        </label>
+
+        <label>
+          Or Upload a File:
+          <input type="file" id="fragmentFile" />
+        </label>
+
+        <button type="submit">Create Fragment</button>
+      </form>
+    </section>
+
+    <!-- Fragment Status -->
+    <section>
+      <div id="fragmentCreateStatus">
+        <p id="createFragmentStatus" class="status-message"></p>
+      </div>
+    </section>
+
+    <!-- List of Fragments -->
+    <section hidden id="fragmentListSection">
+      <h2><span class="username"></span>'s Fragment Metadata</h2>
+      <div id="fragmentListContainer"></div>
+    </section>
+
+    <!-- Update Fragment Modal -->
+    <div id="updateFragmentModal" class="modal">
+      <div class="modal-content">
+        <h2>Edit Fragment</h2>
+        <form id="updateFragmentForm">
+          <label>
+            Fragment Type:
+            <input type="text" id="fragmentTypeM" name="type" required />
+          </label>
+
+          <label>
+            Fragment Data (Text):
+            <textarea id="fragmentDataM" required></textarea>
+          </label>
+
+          <label>
+            Or Upload a File:
+            <input type="file" id="fragmentFileM" />
+          </label>
+
+          <div style="display: flex; gap: 1rem;">
+            <button type="submit" id="updateFragmentM">Update Fragment</button>
+            <button type="button" id="closeUpdateModal">Close</button>
+          </div>
+
+          <div id="updateFragmentStatus" class="status-message"></div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Convert Fragment Modal -->
+    <div id="convertFragmentModal" class="modal">
+      <div class="modal-content">
+        <h2>Convert Fragment</h2>
+        <div>
+          <p><strong>Original Fragment Data:</strong></p>
+          <p id="originalFragmentData"></p>
+        </div>
+
+        <label>
+          Convert To (e.g., txt, md):
+          <input type="text" id="conversionType" placeholder="Enter target type" />
+        </label>
+
+        <div>
+          <p><strong>Converted Fragment Data:</strong></p>
+          <p id="convertedFragmentData"></p>
+        </div>
+
+        <div style="display: flex; gap: 1rem;">
+          <button type="submit" id="ConvertFragmentBtn">Convert</button>
+          <button type="button" id="closeConvertModal">Close</button>
+        </div>
+
+        <div id="conversionMessage" class="status-message"></div>
+      </div>
+    </div>
+  </body>
+</html>
